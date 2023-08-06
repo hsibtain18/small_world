@@ -21,17 +21,18 @@ export class MainContentComponent implements OnInit ,AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   currentPage = 0
-  pageSize =0;
+  pageSize = 5;
+  details: any;
   constructor(private http: HttpService) {
-
   }
   ngOnInit(): void {
     this.searchAllUser(this.currentPage);
   }
   searchAllUser(page: number) {
-    this.http.getAllUsers(page)
+    this.http.getAllUsers(page,this.pageSize)
       .subscribe((val: any) => {
         console.log(val);
+        this.details = val;
         this.totalRecords = val.total
         this.dataSource = new MatTableDataSource(val.data);
         this.paginator.pageIndex = this.currentPage;
@@ -41,10 +42,9 @@ export class MainContentComponent implements OnInit ,AfterViewInit {
    
   }
   ngAfterViewInit() {
-    setTimeout(() => {
+    this.totalRecords = this.details.total
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    }, 100);
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

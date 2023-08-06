@@ -9,7 +9,7 @@ export class HttpService {
 
   constructor(private _http : HttpClient) { }
 
-  getAllUsers(page:number): Observable<any>{
-    return this._http.get(`https://reqres.in/api/users?page=${page}`)
+  getAllUsers(page:number, size: number): Observable<any>{
+    return this._http.get(`https://reqres.in/api/users?page=${page}&per_page=${size}`)
   }
 }
