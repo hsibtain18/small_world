@@ -1,0 +1,21 @@
+.dashboard{
+    .header {
+        height: 65px !important;
+    }
+    .sideNav{
+        margin: 0;
+        width: 20%;
+        background-color: #f1f1f1;
+        position: fixed;
+        height: 100%;
+        overflow: auto;
+    }
+    .main-content {
+        width: 80%;
+        background-color: #cccccc;
+        position: fixed;
+        height: 100%;
+        overflow: auto;
+        margin-left:20%;
+    }
+}
